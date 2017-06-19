@@ -16,12 +16,12 @@ namespace BookShoppingCart.Tests
             //Arrage
             var books = new List<Book>
             {
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第一集", Price = 100 }
+                new Book { Id = Guid.NewGuid(), Name = "哈利波特第一集", Price = 100m }
             };
 
             //Act
             var actual = new ShoppingCartCalculator().Calculate(books);
-            decimal expected = 100;
+            var expected = 100m;
 
             //Assert
             Assert.AreEqual(actual, expected);
@@ -33,13 +33,13 @@ namespace BookShoppingCart.Tests
             //Arrage
             var books = new List<Book>
             {
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第一集", Price = 100 },
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第二集", Price = 100 }
+                new Book { Id = Guid.NewGuid(), Name = "哈利波特第一集", Price = 100m },
+                new Book { Id = Guid.NewGuid(), Name = "哈利波特第二集", Price = 100m }
             };
 
             //Act
             var actual = new ShoppingCartCalculator().Calculate(books);
-            decimal expected = 190;
+            var expected = 190m;
 
             //Assert
             Assert.AreEqual(actual, expected);

@@ -9,9 +9,17 @@ namespace BookShoppingCart
     {
         public decimal Calculate(IEnumerable<Book> books)
         {
-            var sum = books.Sum(c => c.Price);
+            var sum = books.Sum(c => c.Price) * GetDiscount(books.Count());
 
             return sum;
+        }
+
+        private decimal GetDiscount(int count)
+        {
+            if (count >= 2)
+                return 0.95m;
+            else
+                return 1m;            
         }
     }
 }
