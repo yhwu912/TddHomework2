@@ -20,13 +20,14 @@ namespace BookShoppingCart.Tests
         public void 第一集買了一本_其他都沒買_價格應為100元()
         {
             //Arrage
+            var target = new ShoppingCartCalculator();
             var books = new List<Book>
             {
                 _bookVolume1
             };
 
             //Act
-            var actual = new ShoppingCartCalculator().Calculate(books);
+            var actual = target.Calculate(books);
             var expected = 100m;
 
             //Assert
@@ -37,6 +38,7 @@ namespace BookShoppingCart.Tests
         public void 第一集買了一本_第二集也買了一本_價格應為190元()
         {
             //Arrage
+            var target = new ShoppingCartCalculator();
             var books = new List<Book>
             {
                 _bookVolume1,
@@ -44,7 +46,7 @@ namespace BookShoppingCart.Tests
             };
 
             //Act
-            var actual = new ShoppingCartCalculator().Calculate(books);
+            var actual = target.Calculate(books);
             var expected = 190m;
 
             //Assert
@@ -55,6 +57,7 @@ namespace BookShoppingCart.Tests
         public void 一二三集各買了一本_價格應為270元()
         {
             //Arrage
+            var target = new ShoppingCartCalculator();
             var books = new List<Book>
             {
                 _bookVolume1,
@@ -63,7 +66,7 @@ namespace BookShoppingCart.Tests
             };
 
             //Act
-            var actual = new ShoppingCartCalculator().Calculate(books);
+            var actual = target.Calculate(books);
             var expected = 270m;
 
             //Assert
@@ -74,6 +77,7 @@ namespace BookShoppingCart.Tests
         public void 一二三四集各買了一本_價格應為320元()
         {
             //Arrage
+            var target = new ShoppingCartCalculator();
             var books = new List<Book>
             {
                 _bookVolume1,
@@ -83,7 +87,7 @@ namespace BookShoppingCart.Tests
             };
 
             //Act
-            var actual = new ShoppingCartCalculator().Calculate(books);
+            var actual = target.Calculate(books);
             var expected = 320m;
 
             //Assert
@@ -94,6 +98,7 @@ namespace BookShoppingCart.Tests
         public void 一次買了整套_一二三四五集各買了一本_價格應為375元()
         {
             //Arrage
+            var target = new ShoppingCartCalculator();
             var books = new List<Book>
             {
                 _bookVolume1,
@@ -104,7 +109,7 @@ namespace BookShoppingCart.Tests
             };
 
             //Act
-            var actual = new ShoppingCartCalculator().Calculate(books);
+            var actual = target.Calculate(books);
             var expected = 375m;
 
             //Assert
@@ -115,6 +120,7 @@ namespace BookShoppingCart.Tests
         public void 一二集各買了一本_第三集買了兩本_價格應為370()
         {
             //Arrage            
+            var target = new ShoppingCartCalculator();
             var books = new List<Book>
             {
                 _bookVolume1,
@@ -124,7 +130,7 @@ namespace BookShoppingCart.Tests
             };
 
             //Act
-            var actual = new ShoppingCartCalculator().Calculate(books);
+            var actual = target.Calculate(books);
             var expected = 370m;
 
             //Assert
@@ -135,6 +141,7 @@ namespace BookShoppingCart.Tests
         public void 第一集買了一本_第二三集各買了兩本_價格應為460()
         {
             //Arrage            
+            var target = new ShoppingCartCalculator();
             var books = new List<Book>
             {
                 _bookVolume1,
@@ -145,7 +152,7 @@ namespace BookShoppingCart.Tests
             };
 
             //Act
-            var actual = new ShoppingCartCalculator().Calculate(books);
+            var actual = target.Calculate(books);
             var expected = 460m;
 
             //Assert
