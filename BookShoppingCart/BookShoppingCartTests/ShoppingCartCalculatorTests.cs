@@ -10,13 +10,19 @@ namespace BookShoppingCart.Tests
     [TestClass()]
     public class ShoppingCartCalculatorTests
     {
+        private Book _bookVolume1 = new Book { Id = Guid.NewGuid(), Name = "哈利波特第一集", Price = 100m };
+        private Book _bookVolume2 = new Book { Id = Guid.NewGuid(), Name = "哈利波特第二集", Price = 100m };
+        private Book _bookVolume3 = new Book { Id = Guid.NewGuid(), Name = "哈利波特第三集", Price = 100m };
+        private Book _bookVolume4 = new Book { Id = Guid.NewGuid(), Name = "哈利波特第四集", Price = 100m };
+        private Book _bookVolume5 = new Book { Id = Guid.NewGuid(), Name = "哈利波特第五集", Price = 100m };
+
         [TestMethod()]
         public void 第一集買了一本_其他都沒買_價格應為100元()
         {
             //Arrage
             var books = new List<Book>
             {
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第一集", Price = 100m }
+                _bookVolume1
             };
 
             //Act
@@ -33,8 +39,8 @@ namespace BookShoppingCart.Tests
             //Arrage
             var books = new List<Book>
             {
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第一集", Price = 100m },
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第二集", Price = 100m }
+                _bookVolume1,
+                _bookVolume2
             };
 
             //Act
@@ -51,9 +57,9 @@ namespace BookShoppingCart.Tests
             //Arrage
             var books = new List<Book>
             {
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第一集", Price = 100m },
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第二集", Price = 100m },
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第三集", Price = 100m }
+                _bookVolume1,
+                _bookVolume2,
+                _bookVolume3
             };
 
             //Act
@@ -70,10 +76,10 @@ namespace BookShoppingCart.Tests
             //Arrage
             var books = new List<Book>
             {
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第一集", Price = 100m },
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第二集", Price = 100m },
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第三集", Price = 100m },
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第四集", Price = 100m }
+                _bookVolume1,
+                _bookVolume2,
+                _bookVolume3,
+                _bookVolume4
             };
 
             //Act
@@ -90,11 +96,11 @@ namespace BookShoppingCart.Tests
             //Arrage
             var books = new List<Book>
             {
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第一集", Price = 100m },
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第二集", Price = 100m },
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第三集", Price = 100m },
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第四集", Price = 100m },
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第五集", Price = 100m }
+                _bookVolume1,
+                _bookVolume2,
+                _bookVolume3,
+                _bookVolume4,
+                _bookVolume5
             };
 
             //Act
@@ -108,22 +114,42 @@ namespace BookShoppingCart.Tests
         [TestMethod()]
         public void 一二集各買了一本_第三集買了兩本_價格應為370()
         {
-            //Arrage
-            var volume3BookId = Guid.NewGuid();
+            //Arrage            
             var books = new List<Book>
             {
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第一集", Price = 100m },
-                new Book { Id = Guid.NewGuid(), Name = "哈利波特第二集", Price = 100m },
-                new Book { Id = volume3BookId, Name = "哈利波特第三集", Price = 100m },
-                new Book { Id = volume3BookId, Name = "哈利波特第三集", Price = 100m }
+                _bookVolume1,
+                _bookVolume2,
+                _bookVolume3,
+                _bookVolume3
             };
 
             //Act
             var actual = new ShoppingCartCalculator().Calculate(books);
-            var expected = 375m;
+            var expected = 370m;
 
             //Assert
             Assert.AreEqual(expected, actual);
-        }        
+        }
+
+        [TestMethod()]
+        public void 第一集買了一本_第二三集各買了兩本_價格應為460()
+        {
+            //Arrage            
+            var books = new List<Book>
+            {
+                _bookVolume1,
+                _bookVolume2,
+                _bookVolume2,
+                _bookVolume3,
+                _bookVolume3
+            };
+
+            //Act
+            var actual = new ShoppingCartCalculator().Calculate(books);
+            var expected = 460m;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
