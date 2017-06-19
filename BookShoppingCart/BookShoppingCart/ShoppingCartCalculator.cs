@@ -16,6 +16,9 @@ namespace BookShoppingCart
 
         private decimal GetDiscount(int count)
         {
+            if (count >= 5)
+                return 0.75m;
+
             if (count >= 4)
                 return 0.8m;
 
