@@ -9,7 +9,9 @@ namespace BookShoppingCart
     {
         public decimal Calculate(IEnumerable<Book> books)
         {
-            throw new NotImplementedException();
+            var sum = books.Sum(c => c.Price);
+
+            return sum;
         }
     }
 }
