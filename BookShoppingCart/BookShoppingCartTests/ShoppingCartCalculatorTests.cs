@@ -104,5 +104,26 @@ namespace BookShoppingCart.Tests
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod()]
+        public void 一二集各買了一本_第三集買了兩本_價格應為370()
+        {
+            //Arrage
+            var volume3BookId = Guid.NewGuid();
+            var books = new List<Book>
+            {
+                new Book { Id = Guid.NewGuid(), Name = "哈利波特第一集", Price = 100m },
+                new Book { Id = Guid.NewGuid(), Name = "哈利波特第二集", Price = 100m },
+                new Book { Id = volume3BookId, Name = "哈利波特第三集", Price = 100m },
+                new Book { Id = volume3BookId, Name = "哈利波特第三集", Price = 100m }
+            };
+
+            //Act
+            var actual = new ShoppingCartCalculator().Calculate(books);
+            var expected = 375m;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }        
     }
 }
